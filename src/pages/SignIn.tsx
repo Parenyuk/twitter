@@ -12,14 +12,24 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     blueSide: {
-        backgroundColor: '#1DA1F2',
+        backgroundColor: '#71C9F8',
         flex: '0 0 50%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        position: 'relative'
+    },
+    blueSideBigIcon: {
+        position: 'absolute',
+        left: '80%',
+        top: '52%',
+        transform: 'translate(-50%, -50%)',
+        width: '220%',
+        height: '200%',
     },
     blueSideListInfo: {
+        position: 'relative',
         listStyle: 'none',
         padding: 0,
         margin: 0,
@@ -36,9 +46,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 40
     },
     blueSideListInfoIcon: {
-      fontSize: 30,
+        fontSize: 30,
         marginRight: 15,
-
     },
     loginSide: {
         display: 'flex',
@@ -77,11 +86,15 @@ export const SignIn = () => {
     return (
         <div className={classes.wrapper}>
             <section className={classes.blueSide}>
+                <TwitterIcon color='primary' className={classes.blueSideBigIcon}/>
                 <ul className={classes.blueSideListInfo}>
-                    <li><Typography className={classes.blueSideListInfoItem} variant='h6'> <SearchIcon className={classes.blueSideListInfoIcon}/> Читайте те, що вам цікаво.</Typography></li>
-                    <li><Typography className={classes.blueSideListInfoItem} variant='h6'> <PeopleOutlineIcon className={classes.blueSideListInfoIcon}/> Послухайте, про що говорять люди.</Typography>
+                    <li><Typography className={classes.blueSideListInfoItem} variant='h6'> <SearchIcon
+                        className={classes.blueSideListInfoIcon}/> Читайте те, що вам цікаво.</Typography></li>
+                    <li><Typography className={classes.blueSideListInfoItem} variant='h6'> <PeopleOutlineIcon
+                        className={classes.blueSideListInfoIcon}/> Послухайте, про що говорять люди.</Typography>
                     </li>
-                    <li><Typography className={classes.blueSideListInfoItem} variant='h6'><ChatBubbleOutlineIcon className={classes.blueSideListInfoIcon}/> Долучайтеся до розмов.</Typography></li>
+                    <li><Typography className={classes.blueSideListInfoItem} variant='h6'><ChatBubbleOutlineIcon
+                        className={classes.blueSideListInfoIcon}/> Долучайтеся до розмов.</Typography></li>
                 </ul>
             </section>
             <section className={classes.loginSide}>
