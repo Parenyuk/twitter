@@ -116,23 +116,40 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         color: grey[500],
     },
     addTweetForm: {
-        // marginBottom: 25,
-        // borderBottom: '1px solid grey',
-        // borderBottomLength: 100,
+
 
     },
+    addTweetFormWrapper: {
+        // display: 'flex'
+    },
     addTweetFormBorder: {
-        borderBottomLength: '50px',
+        borderBottomLength: '4 50px',
         borderBottomColor: theme.palette.text.secondary,
         borderBottomWidth: '1px',
         borderBottomStyle: 'solid',
         fontSize: '24px',
         margin: '0 0 10px',
-        padding: '0 0  30px',
+        padding: '0 0  10px',
     },
     addTweetButton: {
-        width: 100
+
+        width: 100,
+        marginRight: 30,
+    },
+    addTweetIconButtons: {
+        paddingLeft: 30,
+    },
+    addFormCircleProgress: {
+        alignSelf: 'flex-end',
+        position: 'relative',
+        width: 20,
+        height: 20,
+        margin: '0 10px',
+        '& .MuiCircularProgress-root': {
+            position: 'absolute',
+        },
     }
+
 }));
 
 const SearchTextField = withStyles(() =>
@@ -164,7 +181,7 @@ export const Home = () => {
                             <AddTweetForm
                                 user={{
                                     avatarUrl:
-                                    'https://images.unsplash.com/photo-1528914457842-1af67b57139d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+                                    'https://unsplash.com/photos/eBFU7siwdKE'
                                 }}
                                 classes={classes}
                             />
@@ -186,12 +203,15 @@ export const Home = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                    <div>
-                        <SearchIcon/>
+                    <div style={{position: 'relative'}} >
+                        <SearchIcon style={{position: 'absolute', zIndex: 5}} />
                         {/*<SearchTextField placeholder="Поиск по Твиттеру" inputProps={{*/}
                         {/*    startAdornment: (<InputAdornment position="start"><SearchIcon/></InputAdornment>)*/}
                         {/*}}/>*/}
-                        <SearchTextField placeholder="Поиск по Твиттеру" inputProps={<InputAdornment position="start"><SearchIcon/></InputAdornment>}/>
+                        <SearchTextField placeholder="Поиск по Твиттеру" inputProps={<InputAdornment
+                            position="start"
+                        ><SearchIcon/></InputAdornment>}/>
+
                     </div>
                 </Grid>
             </Grid>
