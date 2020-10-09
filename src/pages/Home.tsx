@@ -1,8 +1,24 @@
-import { Container,  createStyles,  Grid,  InputBase, makeStyles, Paper, Theme, Typography, withStyles, } from '@material-ui/core';
+import {
+    Container,
+    createStyles,
+    Grid,
+    InputBase,
+    makeStyles,
+    Paper,
+    Theme,
+    Typography,
+    withStyles,
+    InputAdornment,
+} from '@material-ui/core';
 import React from 'react';
 import grey from '@material-ui/core/colors/grey';
-import { SideMenu } from '../components/SideMenu';
+import {SideMenu} from '../components/SideMenu';
 import {Tweet} from '../components/tweet';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import SearchIcon from '@material-ui/icons/Search';
+import {AddTweetForm} from '../components/AddTweetForm';
+
+
 
 export const useHomeStyles = makeStyles((theme: Theme) => ({
     wrapper: {
@@ -57,6 +73,9 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     sideMenuTweetButton: {
         padding: theme.spacing(3.2),
         marginTop: theme.spacing(2),
+        [theme.breakpoints.down('md')]: {
+            width: 80,
+        },
     },
     tweetsWrapper: {
         borderRadius: 0,
@@ -96,6 +115,24 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     tweetUserName: {
         color: grey[500],
     },
+    addTweetForm: {
+        // marginBottom: 25,
+        // borderBottom: '1px solid grey',
+        // borderBottomLength: 100,
+
+    },
+    addTweetFormBorder: {
+        borderBottomLength: '50px',
+        borderBottomColor: theme.palette.text.secondary,
+        borderBottomWidth: '1px',
+        borderBottomStyle: 'solid',
+        fontSize: '24px',
+        margin: '0 0 10px',
+        padding: '0 0  30px',
+    },
+    addTweetButton: {
+        width: 100
+    }
 }));
 
 const SearchTextField = withStyles(() =>
@@ -111,17 +148,26 @@ const SearchTextField = withStyles(() =>
 
 export const Home = () => {
     const classes = useHomeStyles();
+    const mediaQuery = useMediaQuery('(max-width: 900px)');
 
     return (
         <Container className={classes.wrapper} maxWidth="lg">
             <Grid container spacing={3}>
                 <Grid item xs={3}>
-                    <SideMenu classes={classes} />
+                    <SideMenu classes={classes} mediaQuery={mediaQuery}/>
                 </Grid>
                 <Grid item xs={6}>
+
                     <Paper className={classes.tweetsWrapper} variant="outlined">
                         <Paper className={classes.tweetsHeader} variant="outlined">
                             <Typography variant="h6">Главная</Typography>
+                            <AddTweetForm
+                                user={{
+                                    avatarUrl:
+                                    'https://images.unsplash.com/photo-1528914457842-1af67b57139d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+                                }}
+                                classes={classes}
+                            />
                         </Paper>
                         {[
                             ...new Array(20).fill(
@@ -140,7 +186,13 @@ export const Home = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                    <SearchTextField placeholder="Поиск по Твиттеру" fullWidth />
+                    <div>
+                        <SearchIcon/>
+                        {/*<SearchTextField placeholder="Поиск по Твиттеру" inputProps={{*/}
+                        {/*    startAdornment: (<InputAdornment position="start"><SearchIcon/></InputAdornment>)*/}
+                        {/*}}/>*/}
+                        <SearchTextField placeholder="Поиск по Твиттеру" inputProps={<InputAdornment position="start"><SearchIcon/></InputAdornment>}/>
+                    </div>
                 </Grid>
             </Grid>
         </Container>
