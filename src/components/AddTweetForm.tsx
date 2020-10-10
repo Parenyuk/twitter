@@ -39,8 +39,10 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
     const [text, setText] = useState<string>('');
     const textLimitPercent = (text.length / 280) * 100
 
+    const maxTextLength = 280;
+
     const handleTextArea = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        if (e.currentTarget && e.currentTarget.value.length <= 10) {
+        if (e.currentTarget && e.currentTarget.value.length <= maxTextLength) {
             setText(e.currentTarget.value)
         }
     }
@@ -57,7 +59,7 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
 
                         placeholder={`Что происходит?`} onChange={handleTextArea} value={text} multiline={true}
                                rows={2} rowsMax={5} size={'medium'}
-                                disabled={textLimitPercent == 100}
+                                // disabled={textLimitPercent == 100}
                     />
                 </Grid>
             </Grid>
