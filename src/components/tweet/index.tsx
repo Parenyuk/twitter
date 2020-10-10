@@ -5,7 +5,7 @@ import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ShareIcon from '@material-ui/icons/ReplyOutlined';
 
 import { Avatar, Grid, IconButton, Paper, Typography } from '@material-ui/core';
-import {useHomeStyles} from '../../pages/Home';
+import { useHomeStyles } from '../../pages/Home/theme';
 
 interface TweetProps {
     text: string;

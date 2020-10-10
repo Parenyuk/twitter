@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import {SignIn} from './pages/SignIn';
-import {Home} from './pages/Home';
 import {Switch, Route} from 'react-router-dom'
+import {Home} from './pages/Home';
+import {SignIn} from './pages/SignIn';
 
 
 
