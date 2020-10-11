@@ -7,7 +7,7 @@ import ShareIcon from '@material-ui/icons/ReplyOutlined';
 import { Avatar, Grid, IconButton, Paper, Typography } from '@material-ui/core';
 import { useHomeStyles } from '../../pages/Home/theme';
 
-interface TweetProps {
+type TweetProps = {
     text: string;
     classes: ReturnType<typeof useHomeStyles>;
     user: {

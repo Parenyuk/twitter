@@ -1,7 +1,6 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import {Button, TextField, Grid, Box, Paper, IconButton, CircularProgress} from '@material-ui/core';
-// import {useHomeStyles} from '../pages/Home';
+import {Button, TextField, Grid, Paper, IconButton, CircularProgress} from '@material-ui/core';
 import GifIcon from '@material-ui/icons/Gif';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import PollIcon from '@material-ui/icons/Poll';
@@ -66,7 +65,6 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
                     <IconButton color='primary'>
                         <InsertInvitationIcon/>
                     </IconButton>
-
                 </Grid>
                 <Grid item xs={1}>
                 {text &&

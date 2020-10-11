@@ -1,13 +1,8 @@
 import {
     Container,
-    createStyles,
     Grid,
-    InputBase,
-    makeStyles,
     Paper,
-    Theme,
     Typography,
-    withStyles,
     InputAdornment,
 } from '@material-ui/core';
 import React from 'react';
