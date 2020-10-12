@@ -8,6 +8,7 @@ export enum LoadingState {
 
 
 export type Tweet = {
+    _id: string;
     text: string;
     user: {
         fullname: string;

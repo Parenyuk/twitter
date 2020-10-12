@@ -6,34 +6,34 @@ import {
     InputAdornment,
 } from '@material-ui/core';
 import React, {useEffect} from 'react';
-
-
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
 import {SideMenu} from '../../components/SideMenu';
 import {AddTweetForm} from '../../components/AddTweetForm';
-import { Tweet } from '../../components/tweet';
-import { useHomeStyles } from './theme';
+import {Tweet} from '../../components/tweet';
+import {useHomeStyles} from './theme';
 import {SearchTextField} from '../../components/SearchTextField';
-import {useDispatch} from 'react-redux';
-import { fetchTweets } from '../../redux/ducks/tweets/actionCreators';
-
-
-
-
-
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchTweets} from '../../redux/ducks/tweets/actionCreators';
+import {selectIsTweetsLoading, selectTweetsItems} from '../../redux/ducks/tweets/selectors';
+import { CircularProgress } from '@material-ui/core';
 
 
 export const Home = () => {
 
     const dispatch = useDispatch();
-  const classes = useHomeStyles();
+
+
+    const classes = useHomeStyles();
     const mediaQuery = useMediaQuery('(max-width: 900px)');
+    const tweets = useSelector(selectTweetsItems);
+    const isLoading = useSelector(selectIsTweetsLoading);
+
 
 
     useEffect(() => {
         dispatch((fetchTweets()))
-    }, [])
+    }, [dispatch])
 
     return (
         <Container className={classes.wrapper} maxWidth="lg">
@@ -54,31 +54,23 @@ export const Home = () => {
                                 classes={classes}
                             />
                         </Paper>
-                        {[
-                            ...new Array(20).fill(
-                                <Tweet
-                                    text="Петиция чтобы в каждой пачке сухариков всегда лежал один большой в три слоя обсыпанный химическими специями царь-сухарик."
-                                    user={{
-                                        fullname: 'Glafira Zhur',
-                                        username: 'GlafiraZhur',
-                                        avatarUrl:
-                                            'https://images.unsplash.com/photo-1528914457842-1af67b57139d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
-                                    }}
-                                    classes={classes}
-                                />,
-                            ),
-                        ]}
+                        { isLoading
+                            ? <div className={classes.tweetsCentered} ><CircularProgress color={'secondary'} /></div>
+                            : tweets.map( (tweet) => (
+                                <Tweet key={tweet._id} text={tweet.text} classes={classes} user={tweet.user}/>
+                                ))
+                        }
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                    <div style={{position: 'relative'}} >
+                    <div style={{position: 'relative'}}>
                         <SearchTextField
                             variant="outlined"
                             placeholder="Поиск по Твиттеру"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <SearchIcon />
+                                        <SearchIcon/>
                                     </InputAdornment>
                                 ),
                             }}

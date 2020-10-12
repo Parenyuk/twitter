@@ -121,6 +121,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     addTweetIconButtons: {
         paddingLeft: 30,
     },
+    tweetsCentered: {
+        textAlign: 'center',
+        marginTop: 50,
+    },
     addFormCircleProgress: {
         alignSelf: 'flex-end',
         position: 'relative',
