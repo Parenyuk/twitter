@@ -63,7 +63,7 @@ export const Home = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
-                    <div style={{position: 'relative'}}>
+                    <div style={{position: 'relative', marginTop: 20}}>
                         <SearchTextField
                             variant="outlined"
                             placeholder="Поиск по Твиттеру"
