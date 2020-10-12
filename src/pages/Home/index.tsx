@@ -5,7 +5,7 @@ import {
     Typography,
     InputAdornment,
 } from '@material-ui/core';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -15,6 +15,8 @@ import {AddTweetForm} from '../../components/AddTweetForm';
 import { Tweet } from '../../components/tweet';
 import { useHomeStyles } from './theme';
 import {SearchTextField} from '../../components/SearchTextField';
+import {useDispatch} from 'react-redux';
+import { fetchTweets } from '../../redux/ducks/tweets/actionCreators';
 
 
 
@@ -23,8 +25,15 @@ import {SearchTextField} from '../../components/SearchTextField';
 
 
 export const Home = () => {
+
+    const dispatch = useDispatch();
   const classes = useHomeStyles();
     const mediaQuery = useMediaQuery('(max-width: 900px)');
+
+
+    useEffect(() => {
+        dispatch((fetchTweets()))
+    }, [])
 
     return (
         <Container className={classes.wrapper} maxWidth="lg">
