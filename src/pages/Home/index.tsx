@@ -3,7 +3,7 @@ import {
     Grid,
     Paper,
     Typography,
-    InputAdornment,
+    InputAdornment, List, ListItem, ListItemText, Divider, ListItemAvatar, Button, Avatar,
 } from '@material-ui/core';
 import React, {useEffect} from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -17,7 +17,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchTweets} from '../../redux/ducks/tweets/actionCreators';
 import {selectIsTweetsLoading, selectTweetsItems} from '../../redux/ducks/tweets/selectors';
 import { CircularProgress } from '@material-ui/core';
-
+import {fetchTags} from '../../redux/ducks/tags/actionCreators';
+import {Tags} from '../../components/Tags';
+import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 
 export const Home = () => {
 
@@ -31,8 +33,10 @@ export const Home = () => {
 
 
 
+
     useEffect(() => {
-        dispatch((fetchTweets()))
+        dispatch((fetchTweets()));
+        dispatch((fetchTags()))
     }, [dispatch])
 
     return (
@@ -62,8 +66,8 @@ export const Home = () => {
                         }
                     </Paper>
                 </Grid>
-                <Grid item xs={3}>
-                    <div style={{position: 'relative', marginTop: 20}}>
+                <Grid item xs={3} sm={3} md={3}>
+                    <div  className={classes.rightSide} >
                         <SearchTextField
                             variant="outlined"
                             placeholder="Поиск по Твиттеру"
@@ -76,75 +80,34 @@ export const Home = () => {
                             }}
                             fullWidth
                         />
-
-                        {/*<Paper className={classes.rightSideBlock}>*/}
-                        {/*    <Paper className={classes.rightSideBlockHeader} variant="outlined">*/}
-                        {/*        <b>Актуальные темы</b>*/}
-                        {/*    </Paper>*/}
-                        {/*    <List>*/}
-                        {/*        <ListItem className={classes.rightSideBlockItem}>*/}
-                        {/*            <ListItemText*/}
-                        {/*                primary="Санкт-Петербург"*/}
-                        {/*                secondary={*/}
-                        {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
-                        {/*                        Твитов: 3 331*/}
-                        {/*                    </Typography>*/}
-                        {/*                }*/}
-                        {/*            />*/}
-                        {/*        </ListItem>*/}
-                        {/*        <Divider component="li" />*/}
-                        {/*        <ListItem className={classes.rightSideBlockItem}>*/}
-                        {/*            <ListItemText*/}
-                        {/*                primary="#коронавирус"*/}
-                        {/*                secondary={*/}
-                        {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
-                        {/*                        Твитов: 163 122*/}
-                        {/*                    </Typography>*/}
-                        {/*                }*/}
-                        {/*            />*/}
-                        {/*        </ListItem>*/}
-                        {/*        <Divider component="li" />*/}
-                        {/*        <ListItem className={classes.rightSideBlockItem}>*/}
-                        {/*            <ListItemText*/}
-                        {/*                primary="Беларусь"*/}
-                        {/*                secondary={*/}
-                        {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
-                        {/*                        Твитов: 13 554*/}
-                        {/*                    </Typography>*/}
-                        {/*                }*/}
-                        {/*            />*/}
-                        {/*        </ListItem>*/}
-                        {/*        <Divider component="li" />*/}
-                        {/*    </List>*/}
-                        {/*</Paper>*/}
-                        {/*<Paper className={classes.rightSideBlock}>*/}
-                        {/*    <Paper className={classes.rightSideBlockHeader} variant="outlined">*/}
-                        {/*        <b>Кого читать</b>*/}
-                        {/*    </Paper>*/}
-                        {/*    <List>*/}
-                        {/*        <ListItem className={classes.rightSideBlockItem}>*/}
-                        {/*            <ListItemAvatar>*/}
-                        {/*                <Avatar*/}
-                        {/*                    alt="Remy Sharp"*/}
-                        {/*                    src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"*/}
-                        {/*                />*/}
-                        {/*            </ListItemAvatar>*/}
-                        {/*            <ListItemText*/}
-                        {/*                primary="Dock Of Shame"*/}
-                        {/*                secondary={*/}
-                        {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
-                        {/*                        @FavDockOfShame*/}
-                        {/*                    </Typography>*/}
-                        {/*                }*/}
-                        {/*            />*/}
-                        {/*            <Button color="primary">*/}
-                        {/*                <PersonAddIcon />*/}
-                        {/*            </Button>*/}
-                        {/*        </ListItem>*/}
-                        {/*        <Divider component="li" />*/}
-                        {/*    </List>*/}
-                        {/*</Paper>*/}
-
+                        <Tags classes={classes}/>
+                        <Paper className={classes.rightSideBlock}>
+                            <Paper className={classes.rightSideBlockHeader} variant="outlined">
+                                <b>Кого читать</b>
+                            </Paper>
+                            <List>
+                                <ListItem className={classes.rightSideBlockItem}>
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"
+                                        />
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary="Dock Of Shame"
+                                        secondary={
+                                            <Typography component="span" variant="body2" color="textSecondary">
+                                                @FavDockOfShame
+                                            </Typography>
+                                        }
+                                    />
+                                    <Button color="primary">
+                                        <PersonAddIcon />
+                                    </Button>
+                                </ListItem>
+                                <Divider component="li" />
+                            </List>
+                        </Paper>
                     </div>
                 </Grid>
             </Grid>

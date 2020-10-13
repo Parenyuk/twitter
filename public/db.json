@@ -91,6 +91,34 @@
       }
     }
   ],
+  "tags": [
+    {
+      "name": "Ukraine", "count": 1611
+    },
+    {
+      "name": "Sport", "count":  234
+    },
+    {
+      "name": "Kyiv", "count":  111
+    }
+  ],
+  "users": [
+    {
+      "fullname": "Elaine Steele",
+      "username": "Mathews",
+      "avatarUrl": "https://source.unsplash.com/random/100*100?5"
+    },
+    {
+      "fullname": "Sears Maddox",
+      "username": "Mcknight",
+      "avatarUrl": "https://source.unsplash.com/random/100*100?2"
+    },
+    {
+      "fullname": "Alissa Oliver",
+      "username": "Castillo",
+      "avatarUrl": "https://source.unsplash.com/random/100*100?5"
+    }
+  ],
   "user": {
     "_id": "5f847bc25e3d302ce463bdeb",
     "fullname": "Victor Parenyuk",
