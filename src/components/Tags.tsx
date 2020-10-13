@@ -1,16 +1,16 @@
 import React, {ReactElement} from 'react';
 import {
-
     Divider,
     List,
     ListItem,
     ListItemText,
     Paper,
-    Typography
+    Typography,
 } from '@material-ui/core';
 import {useHomeStyles} from '../pages/Home/theme';
 import {useSelector} from 'react-redux';
 import {selectIsTagsLoaded,  selectTagsItems} from '../redux/ducks/tags/selectors';
+import {Link} from 'react-router-dom';
 
 
 type TagsProps = {
@@ -32,26 +32,29 @@ export const Tags: React.FC<TagsProps> = ( {classes}:TagsProps ): ReactElement |
     return (
         <Paper className={classes.rightSideBlock}>
             <Paper className={classes.rightSideBlockHeader} variant="outlined">
-                <b>Кого читать</b>
+                <b>Актуальные темы</b>
             </Paper>
             <List>
-                {
-                    items.map((obj) => (
-                        <React.Fragment key={obj._id} >
+                {items.map((obj) => (
+                    <React.Fragment key={obj._id}>
                         <ListItem className={classes.rightSideBlockItem}>
-                            <ListItemText
-                                primary={obj.name}
-                                secondary={
-                                    <Typography component="span" variant="body2"  >
-                                       Твиттов: {obj.count}
-                                    </Typography>
-                                }
-                            />
+                            <Link to={`/home/search?q=${obj.name}`}>
+                                <ListItemText
+                                    primary={obj.name}
+                                    secondary={
+                                        <Typography component="span" variant="body2" >
+                                            Твитов: {obj.count}
+                                        </Typography>
+                                    }
+                                />
+                            </Link>
                         </ListItem>
                         <Divider component="li" />
-                        </React.Fragment>
-                    )) }
+                    </React.Fragment>
+                ))}
             </List>
         </Paper>
     );
 };
+
+

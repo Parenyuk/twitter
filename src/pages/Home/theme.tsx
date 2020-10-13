@@ -97,6 +97,9 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     tweetUserName: {
         color: grey[500],
     },
+    tweetWrapper: {
+        textDecoration: 'none',
+    },
     addTweetForm: {
 
 
@@ -175,7 +178,6 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
             backgroundColor: '#edf3f6',
         },
         '& a': {
-            color: 'inherit',
             textDecoration: 'none',
         },
     },

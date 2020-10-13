@@ -20,6 +20,7 @@ import { CircularProgress } from '@material-ui/core';
 import {fetchTags} from '../../redux/ducks/tags/actionCreators';
 import {Tags} from '../../components/Tags';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
+import { Route } from 'react-router-dom';
 
 export const Home = () => {
 
@@ -50,20 +51,26 @@ export const Home = () => {
                     <Paper className={classes.tweetsWrapper} variant="outlined">
                         <Paper className={classes.tweetsHeader} variant="outlined">
                             <Typography variant="h6">Главная</Typography>
-                            <AddTweetForm
-                                user={{
-                                    avatarUrl:
-                                        'https://images.unsplash.com/photo-1545912452-8aea7e25a3d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'
-                                }}
-                                classes={classes}
-                            />
                         </Paper>
-                        { isLoading
-                            ? <div className={classes.tweetsCentered} ><CircularProgress color={'secondary'} /></div>
-                            : tweets.map( (tweet) => (
-                                <Tweet key={tweet._id} text={tweet.text} classes={classes} user={tweet.user}/>
+                       <Route path={'[\'/home\', \'/home/search\']'} >
+                           <Paper>
+                               <AddTweetForm
+                                   user={{
+                                       avatarUrl:
+                                           'https://images.unsplash.com/photo-1545912452-8aea7e25a3d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'
+                                   }}
+                                   classes={classes}
+                               />
+                           </Paper>
+                       </Route>
+                        <Route path={'/home'} exact >
+                            { isLoading
+                                ? <div className={classes.tweetsCentered} ><CircularProgress color={'secondary'} /></div>
+                                : tweets.map( (tweet) => (
+                                    <Tweet key={tweet._id} classes={classes} {...tweet} />
                                 ))
-                        }
+                            }
+                        </Route>
                     </Paper>
                 </Grid>
                 <Grid item xs={3} sm={3} md={3}>

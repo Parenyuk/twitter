@@ -13,6 +13,7 @@ import {useHomeStyles} from '../pages/Home/theme';
 import {ModalBlock} from './ModalBlock';
 import {AddTweetForm} from './AddTweetForm';
 import userPhoto from ' ./../assets/image/userPhoto.jpg'
+import { Link } from 'react-router-dom';
 
 type SideMenuProps = {
     classes: ReturnType<typeof useHomeStyles>;
@@ -36,9 +37,11 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes, mediaQuery,}: SideMe
     return (
         <ul className={classes.sideMenuList}>
             <li className={classes.sideMenuListItem}>
-                <IconButton className={classes.logo} aria-label="" color="primary">
-                    <TwitterIcon className={classes.logoIcon} />
-                </IconButton>
+               <Link to={'/home'} >
+                   <IconButton className={classes.logo} aria-label="" color="primary">
+                       <TwitterIcon className={classes.logoIcon} />
+                   </IconButton>
+               </Link>
             </li>
             <li className={classes.sideMenuListItem}>
                 <div>

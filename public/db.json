@@ -93,13 +93,13 @@
   ],
   "tags": [
     {
-      "name": "Ukraine", "count": 1611
+      "name": "#Ukraine", "count": 1611, "_id": "12er3re3t"
     },
     {
-      "name": "Sport", "count":  234
+      "name": "#Sport", "count":  234, "_id" : "12235r5"
     },
     {
-      "name": "Kyiv", "count":  111
+      "name": "#Kyiv", "count":  111, "_id": "12sdt3"
     }
   ],
   "users": [
