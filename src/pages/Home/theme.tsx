@@ -66,6 +66,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         borderBottom: '0',
     },
     tweetsHeader: {
+        display: 'flex',
+        alignItems: 'center',
         borderTop: '0',
         borderLeft: '0',
         borderRight: '0',

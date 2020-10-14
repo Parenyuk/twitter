@@ -3,7 +3,7 @@ import {
     Grid,
     Paper,
     Typography,
-    InputAdornment, List, ListItem, ListItemText, Divider, ListItemAvatar, Button, Avatar,
+    InputAdornment, List, ListItem, ListItemText, Divider, ListItemAvatar, Button, Avatar, IconButton,
 } from '@material-ui/core';
 import React, {useEffect} from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -21,6 +21,7 @@ import {fetchTags} from '../../redux/ducks/tags/actionCreators';
 import {Tags} from '../../components/Tags';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import { Route } from 'react-router-dom';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 export const Home = () => {
 
@@ -31,6 +32,7 @@ export const Home = () => {
     const mediaQuery = useMediaQuery('(max-width: 900px)');
     const tweets = useSelector(selectTweetsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
+
 
 
 
@@ -49,10 +51,31 @@ export const Home = () => {
                 <Grid item xs={6}>
 
                     <Paper className={classes.tweetsWrapper} variant="outlined">
+
                         <Paper className={classes.tweetsHeader} variant="outlined">
-                            <Typography variant="h6">Главная</Typography>
+                            <Route path="/home:any" >
+                           <IconButton color={'primary'} >
+                               <ArrowBackIcon/>
+                           </IconButton>
+                            </Route>
+
+                            <Route path={['/home', '/home/search']} exact>
+                                <Typography variant="h6">Твиты</Typography>
+                            </Route>
+
+                            <Route path="/home/tweet" >
+                                <IconButton color={'primary'} >
+                                    <ArrowBackIcon/>
+                                </IconButton>
+                                <Typography variant="h6">Твитнуть</Typography>
+                            </Route>
                         </Paper>
-                       <Route path={'[\'/home\', \'/home/search\']'} >
+
+
+
+
+
+                           <Route path={['/home', '/home /search']} exact >
                            <Paper>
                                <AddTweetForm
                                    user={{
