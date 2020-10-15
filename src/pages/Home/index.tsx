@@ -22,6 +22,7 @@ import {Tags} from '../../components/Tags';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import { Route } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {BackButton} from '../../components/BackButton';
 
 export const Home = () => {
 
@@ -60,13 +61,12 @@ export const Home = () => {
                             </Route>
 
                             <Route path={['/home', '/home/search']} exact>
+                                <BackButton />
                                 <Typography variant="h6">Твиты</Typography>
                             </Route>
 
                             <Route path="/home/tweet" >
-                                <IconButton color={'primary'} >
-                                    <ArrowBackIcon/>
-                                </IconButton>
+                                <BackButton />
                                 <Typography variant="h6">Твитнуть</Typography>
                             </Route>
                         </Paper>

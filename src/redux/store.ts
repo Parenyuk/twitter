@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas';
 import {TweetsState} from './ducks/tweets/contracts/state';
 import {TagsState} from './ducks/tags/contracts/state';
+import {TweetState} from './ducks/tweet/contracts/state';
 
 
 
@@ -12,7 +13,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const sagaMiddleware = createSagaMiddleware()
 
 export type RootStateType = {
-    tweets: TweetsState;
+    tweets: TweetsState
+    tweet: TweetState
     tags: TagsState
 
 }
