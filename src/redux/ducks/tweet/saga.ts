@@ -1,17 +1,19 @@
-import { takeEvery, call, put } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import {LoadingState} from './contracts/state';
-import {setTweetLoadingState, TweetActionsType} from './contracts/actionTypes';
+import {FetchTweetActionType, setTweetLoadingState, TweetActionsType} from './contracts/actionTypes';
 import {TweetApi} from '../../../services/api/tweetApi';
+import {setTweetData} from './actionCreators';
 
 
 
 
 // Our worker Saga: will perform the async increment task
-export function* fetchTweetsRequest() {
+export function* fetchTweetDataRequest({payload: tweetId}: FetchTweetActionType) {
     try {
-        const items = yield call(TweetApi.fetchTweet);
-        yield put(setTweet(items));
-        console.log(items)
+
+        const data = yield call(TweetApi.fetchTweetData, tweetId);
+        yield put(setTweetData(data));
+        console.log(data)
     }
     catch (e) {
         yield put(setTweetLoadingState(LoadingState.ERROR))
@@ -20,5 +22,5 @@ export function* fetchTweetsRequest() {
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
 export function* tweetsSaga() {
-    yield takeEvery(TweetActionsType.FETCH_TWEET_DATA,  fetchTweetsRequest)
+    yield takeLatest(TweetActionsType.FETCH_TWEET_DATA,  fetchTweetDataRequest)
 }

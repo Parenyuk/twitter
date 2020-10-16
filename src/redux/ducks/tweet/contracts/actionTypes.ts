@@ -13,8 +13,11 @@ export type SetTweetDataActionType  = Action<TweetActionsType> &  {
 }
 export type FetchTweetActionType  = Action<TweetActionsType> &  {
     type: TweetActionsType.FETCH_TWEET_DATA;
+    payload: string;
 
 }
+
+
 
 
 export type SetTweetLoadingStateType  = Action<TweetActionsType> &  {

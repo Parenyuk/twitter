@@ -15,8 +15,9 @@ export const setTweetData = (payload: Tweet): SetTweetDataActionType => ({
 
 
 
-export const fetchTweet = (): FetchTweetActionType => ({
+export const fetchTweetData = (payload: string): FetchTweetActionType => ({
     type: TweetActionsType.FETCH_TWEET_DATA,
+    payload
 });
 
 

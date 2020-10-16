@@ -10,7 +10,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
 import {SideMenu} from '../../components/SideMenu';
 import {AddTweetForm} from '../../components/AddTweetForm';
-import {Tweet} from '../../components/tweet';
 import {useHomeStyles} from './theme';
 import {SearchTextField} from '../../components/SearchTextField';
 import {useDispatch, useSelector} from 'react-redux';
@@ -23,6 +22,9 @@ import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import { Route } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {BackButton} from '../../components/BackButton';
+import {FullTweet} from './components/FullTweet';
+import {Tweet} from '../../components/tweet/index';
+
 
 export const Home = () => {
 
@@ -40,7 +42,8 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch((fetchTweets()));
-        dispatch((fetchTags()))
+        dispatch((fetchTags()));
+        // dispatch((fetchTweetData()))
     }, [dispatch])
 
     return (
@@ -93,6 +96,10 @@ export const Home = () => {
                                     <Tweet key={tweet._id} classes={classes} {...tweet} />
                                 ))
                             }
+                        </Route>
+
+                        <Route path={'/home/tweet/:id'} component={FullTweet} exact >
+
                         </Route>
                     </Paper>
                 </Grid>
