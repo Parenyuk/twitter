@@ -183,5 +183,16 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
             textDecoration: 'none',
         },
     },
+    addForm: {
+        padding: 20,
+    },
+    addFormBottomLine: {
+        height: 12,
+        backgroundColor: '#E6ECF0',
+    },
+    tweetsCentred: {
+        marginTop: 50,
+        textAlign: 'center',
+    },
 
 }));

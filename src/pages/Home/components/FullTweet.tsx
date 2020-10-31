@@ -1,5 +1,6 @@
 import React from 'react';
 import {useHomeStyles} from '../theme';
+import {Tweet} from '../../../components/tweet';
 
 
 
@@ -7,10 +8,11 @@ import {useHomeStyles} from '../theme';
 export const FullTweet: React.FC = ():React.ReactElement  => {
 
     const classes = useHomeStyles();
-
+    debugger
     return (
         <div>
-          trng dnkb
+          твит
+            {/*<Tweet key={tweet._id} classes={classes} {...tweet} />*/}
         </div>
     )
 }

@@ -52,55 +52,49 @@ export const Home = () => {
                 <Grid item xs={3}>
                     <SideMenu classes={classes} mediaQuery={mediaQuery}/>
                 </Grid>
-                <Grid item xs={6}>
-
+                <Grid sm={8} md={6} item>
                     <Paper className={classes.tweetsWrapper} variant="outlined">
-
                         <Paper className={classes.tweetsHeader} variant="outlined">
-                            <Route path="/home:any" >
-                           <IconButton color={'primary'} >
-                               <ArrowBackIcon/>
-                           </IconButton>
+                            <Route path="/home/:any">
+                                <BackButton />
                             </Route>
 
                             <Route path={['/home', '/home/search']} exact>
-                                <BackButton />
                                 <Typography variant="h6">Твиты</Typography>
                             </Route>
 
-                            <Route path="/home/tweet" >
-                                <BackButton />
+                            <Route path="/home/tweet">
                                 <Typography variant="h6">Твитнуть</Typography>
                             </Route>
                         </Paper>
 
-
-
-
-
-                           <Route path={['/home', '/home /search']} exact >
-                           <Paper>
-                               <AddTweetForm
-                                   user={{
-                                       avatarUrl:
-                                           'https://images.unsplash.com/photo-1545912452-8aea7e25a3d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'
-                                   }}
-                                   classes={classes}
-                               />
-                           </Paper>
-                       </Route>
-                        <Route path={'/home'} exact >
-                            { isLoading
-                                ? <div className={classes.tweetsCentered} ><CircularProgress color={'secondary'} /></div>
-                                : tweets.map( (tweet) => (
-                                    <Tweet key={tweet._id} classes={classes} {...tweet} />
-                                ))
-                            }
+                        <Route path={['/home', '/home/search']} exact>
+                            <Paper>
+                                <div className={classes.addForm}>
+                                    <AddTweetForm
+                                        user={{
+                                            avatarUrl:
+                                                'https://images.unsplash.com/photo-1545912452-8aea7e25a3d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'
+                                        }}
+                                        classes={classes}
+                                    />
+                                </div>
+                                <div className={classes.addFormBottomLine} />
+                            </Paper>
                         </Route>
 
-                        <Route path={'/home/tweet/:id'} component={FullTweet} exact >
-
+                        <Route path="/home" exact>
+                            {isLoading ? (
+                                <div className={classes.tweetsCentred}>
+                                    <CircularProgress />
+                                </div>
+                            ) : (
+                                tweets.map((tweet) => <Tweet key={tweet._id} classes={classes} {...tweet} />)
+                            )}
                         </Route>
+
+                        <Route path="/home/tweet/:id" component={FullTweet} exact />
+
                     </Paper>
                 </Grid>
                 <Grid item xs={3} sm={3} md={3}>
