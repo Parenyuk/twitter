@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import {LoadingState} from './contracts/state';
 import {FetchTweetActionType, setTweetLoadingState, TweetActionsType} from './contracts/actionTypes';
-import {TweetApi} from '../../../services/api/tweetApi';
 import {setTweetData} from './actionCreators';
+import {TweetsApi} from '../../../services/api/tweetsApi';
 
 
 
@@ -11,7 +11,7 @@ import {setTweetData} from './actionCreators';
 export function* fetchTweetDataRequest({payload: tweetId}: FetchTweetActionType) {
     try {
 
-        const data = yield call(TweetApi.fetchTweetData, tweetId);
+        const data = yield call(TweetsApi.fetchTweetData, tweetId);
         yield put(setTweetData(data));
         console.log(data)
     }

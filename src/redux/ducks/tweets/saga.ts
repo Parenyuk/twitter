@@ -1,7 +1,8 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import {setTweets, setTweetsLoadingState, TweetsActionsType} from './actionCreators';
-import { TweeetsApi} from '../../../services/api/tweetsApi';
+
 import {LoadingState} from './contracts/state';
+import { TweetsApi } from '../../../services/api/tweetsApi';
 
 
 
@@ -9,7 +10,7 @@ import {LoadingState} from './contracts/state';
 // Our worker Saga: will perform the async increment task
 export function* fetchTweetsRequest() {
     try {
-        const items = yield call(TweeetsApi.fetchTweets);
+        const items = yield call(TweetsApi.fetchTweets);
         yield put(setTweets(items));
         console.log(items)
     }
