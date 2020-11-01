@@ -14,7 +14,7 @@ type TweetProps = {
     classes: ReturnType<typeof useHomeStyles>;
     user: {
         fullname: string;
-        username: string;
+        username : string;
         avatarUrl: string;
     };
 }

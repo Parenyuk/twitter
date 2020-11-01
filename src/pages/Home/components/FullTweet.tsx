@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
 import {useHomeStyles} from '../theme';
 import {Tweet} from '../../../components/tweet';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchTweetDataRequest} from '../../../redux/ducks/tweet/saga';
-import {fetchTweetData} from '../../../redux/ducks/tweet/actionCreators';
-import {selectTweet, selectTweetData} from '../../../redux/ducks/tweet/selectors';
+import {fetchTweetData, setTweetData} from '../../../redux/ducks/tweet/actionCreators';
+import {
+    selectIsTweetLoading,
+    selectTweetData
+} from '../../../redux/ducks/tweet/selectors';
+import {CircularProgress} from '@material-ui/core';
 
 
 
@@ -14,6 +17,7 @@ export const FullTweet: React.FC = ():React.ReactElement | null  => {
 
     const classes = useHomeStyles();
     const tweetData = useSelector(selectTweetData)
+    const isLoading = useSelector(selectIsTweetLoading)
 
 
    const dispatch = useDispatch()
@@ -26,13 +30,24 @@ export const FullTweet: React.FC = ():React.ReactElement | null  => {
            dispatch(fetchTweetData(id))
 
        }
-
+        return () => {
+           dispatch(setTweetData(undefined))
+        }
    }, [dispatch,id])
 
-    if(!tweetData) {
-        return null
+    if(isLoading) {
+        return (
+            <div className={classes.tweetsCentred}>
+                <CircularProgress />
+            </div>
+        )
+    }
+    if(tweetData) {
+        return  <Tweet  classes={classes} {...tweetData}/>
+
     }
 
-    return <Tweet  classes={classes} {...tweetData}/>
+    return null;
+
 
 }
