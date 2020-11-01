@@ -10,7 +10,7 @@ import {selectTweet, selectTweetData} from '../../../redux/ducks/tweet/selectors
 
 
 
-export const FullTweet: React.FC = ():React.ReactElement  => {
+export const FullTweet: React.FC = ():React.ReactElement | null  => {
 
     const classes = useHomeStyles();
     const tweetData = useSelector(selectTweetData)
@@ -20,13 +20,19 @@ export const FullTweet: React.FC = ():React.ReactElement  => {
     const params: {id?: string} = useParams();
    const id = params.id;
 
+
    useEffect(() => {
        if (id) {
            dispatch(fetchTweetData(id))
+
        }
 
-   }, [])
+   }, [dispatch,id])
 
+    if(!tweetData) {
+        return null
+    }
 
-    return <Tweet  classes={classes} {...tweetData} />
+    return <Tweet  classes={classes} {...tweetData}/>
+
 }
