@@ -1,26 +1,26 @@
 {
-  "tweets": [
-    {
-    "id": 1,
-    "_id": "5f847bc25e3d302ce463bdeb",
-    "text": "Ea exercitation do ipsum nisi enim ullamco irure do do. Mollit ea magna tempor consequat tempor quis cupidatat consectetur consequat nostrud adipisicing sint labore dolor. Ad laborum dolor laborum officia pariatur qui et officia id ad anim sit sint. Cupidatat anim culpa cupidatat ullamco. Reprehenderit consequat velit proident fugiat ea officia laborum.",
-    "user": {
-      "fullname": "Elaine Steele",
-      "username": "Mathews",
-      "avatarUrl": "https://source.unsplash.com/random/100*100?5"
-    }
-  },
-    {
-      "id": 2,
-      "_id": "5f847bc24f623e6c404dc01b",
-      "text": "I am add a new Tweet",
-      "user": {
-        "fullname": "Victor Parenyuk",
-        "username": "Test",
-        "avatarUrl": "https://source.unsplash.com/random/100*100?4"
-      }
-    }
-  ],
+    "tweets": [
+      {
+        "id": 1,
+        "_id": "5f847bc25e3d302ce463bdeb",
+        "text": "Ea exercitation do ipsum nisi enim ullamco irure do do. Mollit ea magna tempor consequat tempor quis cupidatat consectetur consequat nostrud adipisicing sint labore dolor. Ad laborum dolor laborum officia pariatur qui et officia id ad anim sit sint. Cupidatat anim culpa cupidatat ullamco. Reprehenderit consequat velit proident fugiat ea officia laborum.",
+        "user": {
+          "fullname": "Elaine Steele",
+          "username": "Mathews",
+          "avatarUrl": "https://source.unsplash.com/random/100*100?5"
+        }
+      },
+      {
+        "id": 2,
+        "_id": "5f847bc24f623e6c404dc01b",
+        "text": "I am add a new Tweet",
+        "user": {
+          "fullname": "Victor Parenyuk",
+          "username": "Test",
+          "avatarUrl": "https://source.unsplash.com/random/100*100?4"
+        }
+      },
+    ],
   "tags": [
     {
       "name": "#Ukraine",
