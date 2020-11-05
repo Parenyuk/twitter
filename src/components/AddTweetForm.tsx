@@ -7,6 +7,8 @@ import PollIcon from '@material-ui/icons/Poll';
 import MoodIcon from '@material-ui/icons/Mood';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
 import {useHomeStyles} from '../pages/Home/theme';
+import {useDispatch} from 'react-redux';
+import {addTweet, fetchAddTweet} from '../redux/ducks/tweets/actionCreators';
 
 
 type PropsType = {
@@ -18,6 +20,8 @@ type PropsType = {
 
 
 export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) => {
+
+    const dispatch = useDispatch();
 
     const [text, setText] = useState<string>('');
     const textLimitPercent = (text.length / 280) * 100
@@ -31,8 +35,10 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
     }
 
     const handleClickAddTweet = (): void => {
+        dispatch(fetchAddTweet(text) )
         setText('')
     }
+
 
     return (
         <Paper className={classes.addTweetFormWrapper}>
