@@ -5,16 +5,21 @@ export enum TweetsActionsType {
     SET_TWEETS = 'tweets/SET_TWEETS',
     FETCH_TWEETS = 'tweets/FETCH_TWEETS',
     SET_LOADIND_STATE = 'tweets/SET_LOADIND_STATE',
-    ADD_TWEET = 'tweets/ADD_TWEET'
+    FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
+    ADD_TWEET ='tweets/ADD_TWEET'
 }
 export type SetTweetsActionType  = Action<TweetsActionsType> &  {
     type: TweetsActionsType.SET_TWEETS;
     payload: TweetsState['items'];
 }
 
+export type FetchAddTweetActionType  = Action<TweetsActionsType> &  {
+    type: TweetsActionsType.FETCH_ADD_TWEET;
+    payload: string;
+}
 export type AddTweetActionType  = Action<TweetsActionsType> &  {
     type: TweetsActionsType.ADD_TWEET;
-    payload: string;
+    payload: Tweet;
 }
 
 export type FetchTweetsActionType  = Action<TweetsActionsType> &  {
@@ -38,7 +43,12 @@ export const setTweets = (payload: TweetsState['items']): SetTweetsActionType =>
     payload,
 });
 
-export const addTweet = (payload: string): AddTweetActionType => ({
+export const fetchAddTweet = (payload: string): FetchAddTweetActionType => ({
+    type: TweetsActionsType.FETCH_ADD_TWEET,
+    payload,
+});
+
+export const addTweet = (payload: Tweet): AddTweetActionType => ({
     type: TweetsActionsType.ADD_TWEET,
     payload,
 });

@@ -1,7 +1,13 @@
-import { takeEvery, call, put } from 'redux-saga/effects'
-import {setTweets, setTweetsLoadingState, TweetsActionsType} from './actionCreators';
+import { call, put, takeLatest } from 'redux-saga/effects'
+import {
+    setTweets,
+    setTweetsLoadingState,
+    TweetsActionsType,
+    FetchAddTweetActionType,
+    fetchAddTweet
+} from './actionCreators';
 
-import {LoadingState, Tweet} from './contracts/state';
+import {LoadingState} from './contracts/state';
 import { TweetsApi } from '../../../services/api/tweetsApi';
 
 
@@ -18,19 +24,29 @@ export function* fetchTweetsRequest() {
     }
 }
 
-// export function* addTweetsRequest(payload: Tweet) {
-//     try {
-//         const items = yield call(TweetsApi.addTweet, payload);
-//         yield put(addTweet(items));
-//         console.log(items)
-//     }
-//     catch (e) {
-//         yield put(setTweetsLoadingState(LoadingState.ERROR))
-//     }
-// }
+export function* addTweetsRequest({payload}: FetchAddTweetActionType) {
+    try {
+        const data = {
+           _id: Math.random().toString(36).substring(2),
+            text: payload,
+            user: {
+                "fullname": "Victor Parenyuk",
+                "username": "Test",
+                "avatarUrl": "https://source.unsplash.com/random/100*100?5"
+            }
+        }
+        const item = yield call(TweetsApi.addTweet, data);
+        yield put(fetchAddTweet(item));
+        console.log(item)
+    }
+    catch (e) {
+        yield put(setTweetsLoadingState(LoadingState.ERROR))
+    }
+}
 
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
 export function* tweetsSaga() {
-    yield takeEvery(TweetsActionsType.FETCH_TWEETS,  fetchTweetsRequest)
+    yield takeLatest(TweetsActionsType.FETCH_TWEETS,  fetchTweetsRequest);
+    yield takeLatest(TweetsActionsType.FETCH_TWEETS,  fetchTweetsRequest)
 }
