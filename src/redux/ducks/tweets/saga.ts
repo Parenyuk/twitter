@@ -58,7 +58,7 @@ export function* fetchAddTweetRequest({ payload }:  FetchAddTweetActionType) {
         const item = yield call(TweetsApi.addTweet, data);
         yield put(addTweet(item));
     } catch (error) {
-        // yield put(setAddFormState(AddFormState.ERROR));
+        yield put(setTweetsLoadingState(LoadingState.ERROR))
     }
 }
 
