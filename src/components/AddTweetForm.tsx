@@ -35,6 +35,7 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
     }
 
     const handleClickAddTweet = (): void => {
+        debugger
         dispatch(fetchAddTweet(text) )
         setText('')
     }

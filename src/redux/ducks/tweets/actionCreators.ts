@@ -6,28 +6,30 @@ export enum TweetsActionsType {
     FETCH_TWEETS = 'tweets/FETCH_TWEETS',
     SET_LOADIND_STATE = 'tweets/SET_LOADIND_STATE',
     FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
-    ADD_TWEET ='tweets/ADD_TWEET'
+    ADD_TWEET = 'tweets/ADD_TWEET'
 }
-export type SetTweetsActionType  = Action<TweetsActionsType> &  {
+
+export type SetTweetsActionType = Action<TweetsActionsType> & {
     type: TweetsActionsType.SET_TWEETS;
     payload: TweetsState['items'];
 }
 
-export type FetchAddTweetActionType  = Action<TweetsActionsType> &  {
+export type FetchAddTweetActionType = Action<TweetsActionsType> & {
     type: TweetsActionsType.FETCH_ADD_TWEET;
     payload: string;
 }
-export type AddTweetActionType  = Action<TweetsActionsType> &  {
+export type AddTweetActionType = Action<TweetsActionsType> & {
     type: TweetsActionsType.ADD_TWEET;
     payload: Tweet;
 }
 
-export type FetchTweetsActionType  = Action<TweetsActionsType> &  {
+
+export type FetchTweetsActionType = Action<TweetsActionsType> & {
     type: TweetsActionsType.FETCH_TWEETS;
 }
 
 
-export type SetTweetsLoadingStateType  = Action<TweetsActionsType> &  {
+export type SetTweetsLoadingStateType = Action<TweetsActionsType> & {
     type: TweetsActionsType.SET_LOADIND_STATE;
     payload: LoadingState;
 }
@@ -35,7 +37,6 @@ export const setTweetsLoadingState = (payload: LoadingState): SetTweetsLoadingSt
     type: TweetsActionsType.SET_LOADIND_STATE,
     payload,
 });
-
 
 
 export const setTweets = (payload: TweetsState['items']): SetTweetsActionType => ({
@@ -58,7 +59,8 @@ export const fetchTweets = (): FetchTweetsActionType => ({
 });
 
 
-
 export type TweetsActions = SetTweetsActionType
     | SetTweetsLoadingStateType
     | FetchTweetsActionType
+    | FetchAddTweetActionType
+    | AddTweetActionType
