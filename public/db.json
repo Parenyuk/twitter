@@ -49,6 +49,16 @@
         "avatarUrl": "https://source.unsplash.com/random/100*100?5"
       },
       "id": 5
+    },
+    {
+      "_id": "uq6qb5kc1c8",
+      "text": "add some to reducer",
+      "user": {
+        "fullname": "Victor Parenyuk",
+        "username": "sauber",
+        "avatarUrl": "https://source.unsplash.com/random/100*100?5"
+      },
+      "id": 6
     }
   ],
   "tags": [

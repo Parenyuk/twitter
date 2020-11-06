@@ -1,11 +1,15 @@
-
 export enum LoadingState {
     LOADED = 'LOADED',
-    ERROR = "ERROR",
-    NEVER = "NEVER",
+    ERROR = 'ERROR',
+    NEVER = 'NEVER',
     LOADING = 'LOADING',
 }
 
+export enum AddFormState {
+    ERROR = 'ERROR',
+    NEVER = 'NEVER',
+    LOADING = 'LOADING',
+}
 
 export type Tweet = {
     _id: string;
@@ -21,4 +25,5 @@ export type Tweet = {
 export type TweetsState = {
     items: Tweet[];
     loadingState: LoadingState;
+    addFormState: AddFormState;
 }
