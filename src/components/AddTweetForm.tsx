@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import {Button, TextField, Grid, Paper, IconButton, CircularProgress} from '@material-ui/core';
+import {Button, CircularProgress, Grid, IconButton, Paper, TextField} from '@material-ui/core';
 import GifIcon from '@material-ui/icons/Gif';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import PollIcon from '@material-ui/icons/Poll';
 import MoodIcon from '@material-ui/icons/Mood';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
 import {useHomeStyles} from '../pages/Home/theme';
-import {useDispatch} from 'react-redux';
-import {addTweet, fetchAddTweet} from '../redux/ducks/tweets/actionCreators';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchAddTweet} from '../redux/ducks/tweets/actionCreators';
+import {selectAddFormState} from '../redux/ducks/tweets/selectors';
+import Snackbar from '@material-ui/core/Snackbar';
+import {AddFormState} from '../redux/ducks/tweets/contracts/state';
 
 
 type PropsType = {
@@ -23,6 +26,21 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
 
     const dispatch = useDispatch();
 
+    const addFormState = useSelector( selectAddFormState);
+
+    const [openSnackBar, setSnackBar] = useState<boolean>(false);
+
+    const handleCloseSnackBar = () => {
+        setSnackBar(false)
+    }
+
+    useEffect(()=> {
+        if (addFormState === AddFormState.ERROR) {
+            setSnackBar(true)
+        }
+    }, [addFormState])
+
+
     const [text, setText] = useState<string>('');
     const textLimitPercent = (text.length / 280) * 100
 
@@ -35,7 +53,6 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
     }
 
     const handleClickAddTweet = (): void => {
-        debugger
         dispatch(fetchAddTweet(text) )
         setText('')
     }
@@ -43,6 +60,11 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
 
     return (
         <Paper className={classes.addTweetFormWrapper}>
+            <Snackbar
+                open={openSnackBar}
+                onClose={handleCloseSnackBar}
+                message="Error when adding tweet"
+            />
             <Grid container className={classes.addTweetForm}>
                 <Grid item xs={1} spacing={4}>
                     <Avatar alt={'user photo'} src={user.avatarUrl} /*src={userPhoto}*//>
@@ -87,7 +109,7 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
                     <Button className={classes.addTweetButton}
                             variant="contained"
                             color="primary"
-                            disabled={textLimitPercent == 100}
+                            disabled={!text || textLimitPercent == 100}
                             onClick={handleClickAddTweet}
                     >
                         Твитнуть</Button>

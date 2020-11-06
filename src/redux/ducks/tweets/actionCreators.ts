@@ -44,3 +44,4 @@ export type TweetsActions = SetTweetsActionType
     | FetchTweetsActionType
     | FetchAddTweetActionType
     | AddTweetActionType
+    | SetAddFormStateActionType

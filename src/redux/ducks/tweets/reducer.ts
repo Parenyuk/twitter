@@ -34,6 +34,11 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
 
         case TweetsActionsType.FETCH_ADD_TWEET:
             draft.addFormState = AddFormState.LOADING;
+
+            break;
+        case TweetsActionsType.SET_ADD_FORM_STATE:
+            draft.addFormState = action.payload;
+            // draft.addFormState = AddFormState.ERROR;
             break;
         default:
             break;
