@@ -28,15 +28,20 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
 
     const addFormState = useSelector( selectAddFormState);
 
-    const [openSnackBar, setSnackBar] = useState<boolean>(false);
+
+
+    const [openSnackBar, setOpenSnackBar] = useState<boolean>(false );
+
+
+
 
     const handleCloseSnackBar = () => {
-        setSnackBar(false)
+        setOpenSnackBar(false)
     }
 
     useEffect(()=> {
         if (addFormState === AddFormState.ERROR) {
-            setSnackBar(true)
+            setOpenSnackBar(true)
         }
     }, [addFormState])
 
@@ -61,9 +66,11 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
     return (
         <Paper className={classes.addTweetFormWrapper}>
             <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={openSnackBar}
                 onClose={handleCloseSnackBar}
                 message="Error when adding tweet"
+
             />
             <Grid container className={classes.addTweetForm}>
                 <Grid item xs={1} spacing={4}>
@@ -111,10 +118,11 @@ export const AddTweetForm: React.FC<PropsType> = ({user, classes}: PropsType) =>
                             color="primary"
                             disabled={!text || textLimitPercent == 100}
                             onClick={handleClickAddTweet}
-                    >
-                        Твитнуть</Button>
-                </Grid>
 
+
+                    >  {addFormState === AddFormState.LOADING ? <CircularProgress color={'secondary'} size={16} /> : 'твитнуть' }
+                       </Button>
+                </Grid>
             </Grid>
         </Paper>
     )

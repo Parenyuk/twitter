@@ -21,26 +21,6 @@
       }
     },
     {
-      "_id": "9h6a9w5r1gs",
-      "text": "ss",
-      "user": {
-        "fullname": "Brian Vaughn 🖤",
-        "username": "brian_d_vaughn",
-        "avatarUrl": "https://pbs.twimg.com/profile_images/1290320630521487362/UKVSbU2V_bigger.jpg"
-      },
-      "id": 3
-    },
-    {
-      "_id": "gok8abci6h",
-      "text": "yra",
-      "user": {
-        "fullname": "Victor Parenyuk 🖤",
-        "username": "sauber",
-        "avatarUrl": "https://source.unsplash.com/random/100*100?5"
-      },
-      "id": 4
-    },
-    {
       "_id": "zww9x215fs",
       "text": "hi!",
       "user": {
@@ -60,16 +40,7 @@
       },
       "id": 6
     },
-    {
-      "_id": "vqjoeih9efr",
-      "text": "ddd",
-      "user": {
-        "fullname": "Victor Parenyuk",
-        "username": "sauber",
-        "avatarUrl": "https://source.unsplash.com/random/100*100?5"
-      },
-      "id": 7
-    }
+
   ],
   "tags": [
     {
