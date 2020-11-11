@@ -32,7 +32,7 @@ export const FullTweet: React.FC = ():React.ReactElement | null  => {
    useEffect(() => {
        if (id) {
            dispatch(fetchTweetData(id))
-
+           //  console.log(id)
        }
         return () => {
            dispatch(setTweetData(undefined))

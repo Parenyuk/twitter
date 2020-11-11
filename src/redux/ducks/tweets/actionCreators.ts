@@ -5,7 +5,7 @@ import {
     SetTweetsActionType,
     FetchAddTweetActionType,
     FetchTweetsActionType,
-    AddTweetActionType
+    AddTweetActionType, DeleteTweetActionType
 } from './contracts/actionTypes';
 import { AddFormState, TweetsState, Tweet, LoadingState } from './contracts/state';
 
@@ -34,6 +34,12 @@ export const addTweet = (payload: Tweet): AddTweetActionType => ({
     payload,
 });
 
+export const deleteTweet = (payload: string): DeleteTweetActionType => ({
+    type: TweetsActionsType.DELETE_TWEET,
+    payload,
+});
+
+
 export const fetchTweets = (): FetchTweetsActionType => ({
     type: TweetsActionsType.FETCH_TWEETS,
 });
@@ -45,3 +51,4 @@ export type TweetsActions = SetTweetsActionType
     | FetchAddTweetActionType
     | AddTweetActionType
     | SetAddFormStateActionType
+|  DeleteTweetActionType

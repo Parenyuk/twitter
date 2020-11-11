@@ -6,7 +6,9 @@ import ShareIcon from '@material-ui/icons/ReplyOutlined';
 
 import { Avatar, Grid, IconButton, Paper, Typography } from '@material-ui/core';
 import { useHomeStyles } from '../../pages/Home/theme';
-import {Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {fetchDeleteTweetRequest} from '../../redux/ducks/tweets/saga';
 
 type TweetProps = {
     _id: string;
@@ -19,13 +21,16 @@ type TweetProps = {
     };
 }
 
-export const Tweet: React.FC<TweetProps> = ({
-                                                text,
-                                                user,
-                                                classes, _id
-                                            }: TweetProps): React.ReactElement => {
+export const Tweet: React.FC<TweetProps> = ({text, user, classes, _id}: TweetProps): React.ReactElement  => {
+
+    const dispatch = useDispatch();
+
 
     const deleteTweet = () => {
+        if(_id) {
+            dispatch(fetchDeleteTweetRequest(_id))
+            // console.log(_id)
+        }
 
     }
 
@@ -75,7 +80,6 @@ export const Tweet: React.FC<TweetProps> = ({
                             </div>
                         </div>
                        <button onClick={deleteTweet} >X</button>
-
                     </Grid>
                 </Grid>
         </Paper>

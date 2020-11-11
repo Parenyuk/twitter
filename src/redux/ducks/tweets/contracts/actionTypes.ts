@@ -9,6 +9,7 @@ export enum TweetsActionsType {
     FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
     ADD_TWEET = 'tweets/ADD_TWEET',
     SET_ADD_FORM_STATE = 'tweets/SET_ADD_FORM_STATE',
+    DELETE_TWEET = 'tweets/DELETE_TWEET'
 }
 
 export type SetTweetsActionType = Action<TweetsActionsType> & {
@@ -31,6 +32,15 @@ export type AddTweetActionType = Action<TweetsActionsType> & {
     payload: Tweet;
 }
 
+export type FetchDeleteTweetActionType = Action<string> & {
+    type: TweetsActionsType.DELETE_TWEET;
+    id: string;
+}
+
+export type DeleteTweetActionType = Action<string> & {
+    type: TweetsActionsType.DELETE_TWEET;
+   id: string;
+}
 
 export type FetchTweetsActionType = Action<TweetsActionsType> & {
     type: TweetsActionsType.FETCH_TWEETS;

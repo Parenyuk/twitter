@@ -1,9 +1,9 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
-import {addTweet, setAddFormState, setTweets, setTweetsLoadingState,} from './actionCreators';
+import {addTweet, deleteTweet, setAddFormState, setTweets, setTweetsLoadingState,} from './actionCreators';
 
 import {AddFormState, LoadingState, Tweet} from './contracts/state';
 import {TweetsApi} from '../../../services/api/tweetsApi';
-import {FetchAddTweetActionType, TweetsActionsType} from './contracts/actionTypes';
+import {FetchAddTweetActionType, FetchDeleteTweetActionType, TweetsActionsType} from './contracts/actionTypes';
 
 
 // Our worker Saga: will perform the async increment task
@@ -32,6 +32,15 @@ export function* fetchAddTweetRequest({ payload }:  FetchAddTweetActionType) {
         yield put(addTweet(item));
     } catch (error) {
         yield put(setAddFormState(AddFormState.ERROR))
+    }
+}
+export function* fetchDeleteTweetRequest({ id: string }: FetchDeleteTweetActionType) {
+    try {
+
+        const item = yield call(TweetsApi.deleteTweet, id);
+        yield put(deleteTweet(item));
+    } catch (error) {
+        // yield put(setAddFormState(AddFormState.ERROR))
     }
 }
 
