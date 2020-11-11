@@ -24,6 +24,11 @@ export const Tweet: React.FC<TweetProps> = ({
                                                 user,
                                                 classes, _id
                                             }: TweetProps): React.ReactElement => {
+
+    const deleteTweet = () => {
+
+    }
+
     return (
         <Link to={`/home/tweet/${_id}`} className={classes.tweetWrapper} >
         <Paper  className={`${classes.tweet} ${classes.tweetsHeader}`} variant="outlined">
@@ -69,6 +74,8 @@ export const Tweet: React.FC<TweetProps> = ({
                                 </IconButton>
                             </div>
                         </div>
+                       <button onClick={deleteTweet} >X</button>
+
                     </Grid>
                 </Grid>
         </Paper>
